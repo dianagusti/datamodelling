@@ -1,0 +1,11 @@
+---top selling product---
+
+SELECT DISTINCT
+    dp.category,
+    dp.style,
+    SUM(fs.qty) AS total_quantity_sold,
+    SUM(fs.amount) AS total_amount_sold
+FROM `handsondiana.dibimbing.fact_salesorder` fs
+JOIN `handsondiana.dibimbing.dim_product` dp ON fs.product_id = dp.product_id
+GROUP BY dp.category, dp.style
+"ORDER BY total_quantity_sold DESC, total_amount_sold DESC;"
